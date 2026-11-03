@@ -1,454 +1,241 @@
-\# 🖐️ SmartHand – AI-Powered Virtual Mouse
+ <div align="center">
 
+# 🖐️ SmartHand
 
+### AI-Powered Virtual Mouse Using Hand Gestures & Facial Expression Recognition
 
-\*\*Virtual Mouse using Hand Gesture Recognition and Facial Expression Recognition\*\*
+**Control your computer with simple hand gestures — no physical mouse required!**
 
+<p>
+  <img src="https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/OpenCV-Computer%20Vision-green?style=for-the-badge&logo=opencv&logoColor=white" />
+  <img src="https://img.shields.io/badge/MediaPipe-Hand%20Tracking-orange?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Streamlit-Dashboard-red?style=for-the-badge&logo=streamlit&logoColor=white" />
+</p>
 
+<p>
+  <b>🤖 Artificial Intelligence | 👁️ Computer Vision | ✋ Gesture Recognition</b>
+</p>
 
-SmartHand is an AI-powered Human-Computer Interaction (HCI) project that enables users to control computer mouse operations using hand gestures through a webcam. It also detects facial-expression categories in real time using Computer Vision and Deep Learning models.
+</div>
 
+---
 
+## 🌟 About SmartHand
 
-\## 🚀 Features
+**SmartHand** is an AI-powered Human-Computer Interaction project that transforms your webcam into a virtual mouse.
 
+It uses **hand gesture recognition** to control mouse operations such as cursor movement, left-click, right-click, scrolling, and pause functionality.
 
+Additionally, SmartHand integrates **facial expression recognition** to identify visible facial-expression categories in real time.
 
-\### 1. Hand Gesture Recognition
+The project combines Machine Learning, Computer Vision, and automation to create a touch-free computer interaction experience.
 
+## ✨ Key Features
 
-
-SmartHand recognizes six hand gestures:
-
-
-
-| Hand Gesture | Mouse Operation |
-
+| Feature | Description |
 |---|---|
+| ✋ Hand Detection | Detects hand landmarks using MediaPipe |
+| 🖱️ Virtual Mouse | Controls the cursor using hand gestures |
+| 👆 Left Click | Pinch gesture performs left-click |
+| 👉 Right Click | Three-finger gesture performs right-click |
+| 🤚 Scroll Control | Two-finger gesture controls scrolling |
+| ✊ Pause Control | Fist gesture pauses mouse interaction |
+| 😊 Facial Expression Recognition | Recognizes seven visible expression categories |
+| 📊 ML Dashboard | Streamlit dashboard with model visualizations |
+| 📈 Model Evaluation | Confusion matrix and classification metrics |
 
-| Open Palm | Activate Mouse |
+## 🖐️ Supported Hand Gestures
 
-| Fist | Pause Mouse |
+| Gesture | Action |
+|---|---|
+| 🖐️ Open Palm | Activate virtual mouse |
+| ✊ Fist | Pause virtual mouse |
+| ☝️ Index Point | Move cursor |
+| ✌️ Two Fingers | Scroll |
+| 🤏 Pinch | Left Click |
+| 🤟 Three Fingers | Right Click |
 
-| Index Point | Move Cursor |
+## 📸 Project Screenshots
 
-| Two Fingers | Scroll |
+### 1. SmartHand Dashboard
+![SmartHand Dashboard](screenshots/dashboard.png)
 
-| Pinch | Left Click |
+### 2. Confusion Matrix
+![Confusion Matrix](screenshots/confusion%20matrix.png)
 
-| Three Fingers | Right Click |
+### 3. Virtual Mouse in Action
+![Virtual Mouse](screenshots/SmartHand%20-%20Virtual%20Mouse.png)
 
+### 4. Facial Expression Recognition
+![Facial Expression Recognition](screenshots/SmartHand%20-%20%20Facial%20Recognition.png)
 
+## 🧠 Machine Learning Model
 
-\### 2. Facial Expression Recognition
+SmartHand uses a **Random Forest Classifier** for hand gesture classification.
 
+**Gesture Recognition Details:**
+- 21 hand landmarks detected using MediaPipe.
+- 63 normalized landmark features (X, Y, Z).
+- Six gesture classes.
+- 300 decision trees in the Random Forest model.
+- Stratified 80:20 train-test split.
 
+<div align="center">
 
-The system detects seven facial-expression categories:
+### 🎯 Gesture Model Accuracy
 
+# 86.98%
 
+<sub>Measured on a random stratified held-out test set of 361 samples.</sub>
 
-\- Angry
+</div>
 
-\- Disgust
+**Facial Expression Recognition:**
 
-\- Fearful
+- YuNet for face detection.
+- MobileFaceNet-based ONNX model for expression recognition.
+- Seven categories: Angry, Disgust, Fearful, Happy, Neutral, Sad, and Surprised.
 
-\- Happy
+*Note: Facial expression labels represent visible expression categories, not a definitive measurement of a person's internal emotional state.*
 
-\- Neutral
+## 🛠️ Tech Stack
 
-\- Sad
+| Technology | Purpose |
+|---|---|
+| Python | Core programming |
+| OpenCV | Image processing and webcam access |
+| MediaPipe | Hand landmark detection |
+| NumPy | Numerical operations |
+| Pandas | Dataset handling |
+| Scikit-learn | Random Forest classification |
+| PyAutoGUI | Mouse automation |
+| ONNX | Facial expression model |
+| Streamlit | Interactive dashboard |
+| Plotly | Data visualization |
+| Matplotlib | Confusion matrix visualization |
 
-\- Surprised
-
-
-
-\### 3. Interactive Dashboard
-
-
-
-The Streamlit dashboard provides:
-
-
-
-\- Project overview
-
-\- Hand gesture information
-
-\- Facial expression information
-
-\- Model performance
-
-\- Confusion matrix
-
-\- Application start/stop controls
-
-
-
-\## 🛠️ Technologies Used
-
-
-
-\- Python
-
-\- OpenCV
-
-\- MediaPipe
-
-\- NumPy
-
-\- Pandas
-
-\- Scikit-learn
-
-\- Random Forest Classifier
-
-\- PyAutoGUI
-
-\- Streamlit
-
-\- ONNX Models
-
-\- YuNet Face Detector
-
-\- MobileFaceNet Facial Expression Model
-
-
-
-\## 🧠 Machine Learning Model
-
-
-
-The hand gesture recognition module uses a Random Forest Classifier.
-
-
-
-\*\*Feature Extraction:\*\*
-
-\- 21 hand landmarks
-
-\- X, Y and Z coordinates
-
-\- 63 normalized features
-
-
-
-\*\*Dataset:\*\*
-
-\- Total samples: 1,801
-
-\- Six gesture classes
-
-\- 80% training data
-
-\- 20% testing data
-
-
-
-\*\*Model Accuracy: 86.98%\*\*
-
-
-
-The accuracy is based on the current random train-test split and may differ on independent real-world testing.
-
-
-
-\## 🏗️ Project Architecture
-
-
-
-1\. Webcam captures real-time video.
-
-2\. OpenCV processes video frames.
-
-3\. MediaPipe detects hand landmarks.
-
-4\. Feature extraction generates normalized hand features.
-
-5\. Random Forest predicts the hand gesture.
-
-6\. PyAutoGUI performs mouse operations.
-
-7\. YuNet detects the face.
-
-8\. MobileFaceNet classifies facial expressions.
-
-9\. Streamlit provides the project dashboard.
-
-
-
-\## 📂 Project Structure
-
-
+## 📂 Project Structure
 
 ```text
-
 SmartHand/
-
 │
-
-├── src/
-
 ├── dataset/
-
 │   └── gestures.csv
-
 │
-
-├── models/
-
-│   ├── gesture\_model.pkl
-
-│   ├── hand\_landmarker.task
-
-│   ├── face\_detection\_yunet\_2023mar.onnx
-
-│   ├── facial\_expression\_recognition\_mobilefacenet\_2022july.onnx
-
-│   └── confusion\_matrix.png
-
-│
-
 ├── docs/
-
 │   └── architecture.md
-
 │
-
+├── models/
+│   ├── gesture_model.pkl
+│   ├── hand_landmarker.task
+│   ├── face_detection_yunet_2023mar.onnx
+│   ├── facial_expression_recognition_mobilefacenet_2022july.onnx
+│   └── confusion_matrix.png
+│
 ├── screenshots/
-
+│   ├── dashboard.png
+│   ├── confusion matrix.png
+│   ├── SmartHand - Virtual Mouse.png
+│   └── SmartHand -  Facial Recognition.png
 │
-
 ├── app.py
-
-├── virtual\_mouse.py
-
-├── train\_model.py
-
-├── collect\_data.py
-
-├── facial\_fer\_model.py
-
-├── face\_expression\_test.py
-
+├── collect_data.py
+├── train_model.py
+├── realtime_recognition.py
+├── virtual_mouse.py
+├── facial_fer_model.py
+├── face_expression_test.py
 ├── requirements.txt
-
 └── README.md
-
 ```
 
+## ⚙️ Installation & Setup
 
-
-\## ⚙️ Installation and Setup
-
-
-
-\### Step 1: Clone Repository
-
-
+### Step 1: Clone the Repository
 
 ```bash
-
 git clone https://github.com/HarshuPatil1216/SmartHand.git
-
-cd SmartHand
-
 ```
 
-
-
-\### Step 2: Create Virtual Environment
-
-
+### Step 2: Navigate to Project
 
 ```bash
-
-python -m venv venv
-
+cd SmartHand
 ```
 
+### Step 3: Create Virtual Environment
 
+```bash
+python -m venv venv
+```
 
-\### Step 3: Activate Virtual Environment
+### Step 4: Activate Virtual Environment
 
-
-
-Windows PowerShell:
-
-
+**Windows PowerShell:**
 
 ```powershell
-
-.\\venv\\Scripts\\Activate.ps1
-
+.\venv\Scripts\Activate.ps1
 ```
 
-
-
-\### Step 4: Install Dependencies
-
-
+### Step 5: Install Dependencies
 
 ```bash
-
 python -m pip install -r requirements.txt
-
 ```
 
-
-
-Ensure that PyAutoGUI is installed:
-
-
+### Step 6: Run SmartHand Virtual Mouse
 
 ```bash
-
-python -m pip install pyautogui
-
+python virtual_mouse.py
 ```
 
-
-
-\### Step 5: Run SmartHand Virtual Mouse
-
-
+### Step 7: Run Streamlit Dashboard
 
 ```bash
-
-python virtual\_mouse.py
-
-```
-
-
-
-\### Step 6: Run Streamlit Dashboard
-
-
-
-Open another PowerShell terminal in the project directory:
-
-
-
-```bash
-
 streamlit run app.py
-
 ```
 
+## 🎮 How to Use
 
+1. Connect your webcam.
+2. Run the SmartHand application.
+3. Show your hand in front of the camera.
+4. Use the supported gestures to control your mouse.
+5. View facial-expression categories on the camera display.
+6. Open the Streamlit dashboard to explore model visualizations.
 
-\## 📊 Model Performance
+## 🚀 Future Improvements
 
+- Improve gesture recognition accuracy with more diverse training sessions.
+- Add customizable hand gesture mappings.
+- Improve cursor stability and responsiveness.
+- Add voice command integration.
+- Support multiple languages.
+- Enhance accessibility features.
 
+## 👨‍💻 Developer
 
-The current hand gesture model achieved \*\*86.98% accuracy\*\* on its held-out test split of 361 samples.
+<div align="center">
 
+### Harshavardhan Patil
 
+**Third Year | Artificial Intelligence & Machine Learning**
 
-The project also includes a confusion matrix for evaluating gesture classification.
+KIT's College of Engineering, Kolhapur
 
+[![GitHub](https://img.shields.io/badge/GitHub-HarshuPatil1216-black?style=for-the-badge&logo=github)](https://github.com/HarshuPatil1216)
 
+[![SmartHand Repository](https://img.shields.io/badge/Project-SmartHand-blue?style=for-the-badge&logo=github)](https://github.com/HarshuPatil1216/SmartHand)
 
-\## 💡 Applications
+</div>
 
+---
 
+<div align="center">
 
-\- Touchless computer interaction
+### ⭐ If you like this project, don't forget to star the repository!
 
-\- Human-Computer Interaction
+**Built with ❤️ using Python, Machine Learning & Computer Vision.**
 
-\- Accessibility-oriented interaction systems
-
-\- Computer Vision applications
-
-\- AI and Machine Learning demonstrations
-
-
-
-\## ⚠️ Important Notes
-
-
-
-\- A working webcam is required.
-
-\- Good lighting improves hand and face detection.
-
-\- Facial expression predictions represent visible expression categories, not a person's actual emotional state.
-
-\- Use the virtual mouse carefully because recognized gestures can trigger real mouse clicks and scrolling.
-
-
-
-\## 🔮 Future Enhancements
-
-
-
-\- Improve gesture recognition accuracy.
-
-\- Add more custom hand gestures.
-
-\- Improve cursor stability and scrolling.
-
-\- Add additional accessibility features.
-
-\- Improve dashboard visualization.
-
-\- Evaluate models using independent recording sessions.
-
-
-
-\## 👨‍💻 Author
-
-
-
-\*\*Harsh Patil\*\*
-
-
-
-GitHub: \[HarshuPatil1216](https://github.com/HarshuPatil1216)
-
-
-
-\## ⭐ Support
-
-
-
-If you find this project interesting, consider giving the repository a star!
-
-
-
-\---
-
-
-
-\*\*SmartHand – Making Computer Interaction Touchless with AI.\*\*
-
-
-
-\## 📸 Project Screenshots
-
-
-
-\### 1. SmartHand Dashboard
-
-!\[Dashboard](screenshots/dashboard.png)
-
-
-
-\### 2. Confusion Matrix
-
-!\[Confusion Matrix](screenshots/confusion%20matrix.png)
-
-
-
-\### 3. Virtual Mouse
-
-!\[Virtual Mouse](screenshots/SmartHand%20-%20Virtual%20Mouse.png)
-
-
-
-\### 4. Facial Expression Recognition
-
-!\[Facial Recognition](screenshots/SmartHand%20-%20%20Facial%20Recognition.png)
-
+</div>
