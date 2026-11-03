@@ -424,3 +424,31 @@ If you find this project interesting, consider giving the repository a star!
 
 \*\*SmartHand – Making Computer Interaction Touchless with AI.\*\*
 
+
+
+\## 📸 Project Screenshots
+
+
+
+\### 1. SmartHand Dashboard
+
+!\[Dashboard](screenshots/dashboard.png)
+
+
+
+\### 2. Confusion Matrix
+
+!\[Confusion Matrix](screenshots/confusion%20matrix.png)
+
+
+
+\### 3. Virtual Mouse
+
+!\[Virtual Mouse](screenshots/SmartHand%20-%20Virtual%20Mouse.png)
+
+
+
+\### 4. Facial Expression Recognition
+
+!\[Facial Recognition](screenshots/SmartHand%20-%20%20Facial%20Recognition.png)
+
