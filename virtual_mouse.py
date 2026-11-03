@@ -67,7 +67,6 @@ pyautogui.PAUSE = 0
 
 mouse_active = False
 
-# Cursor smoothing
 smoothening = 0.12
 dead_zone = 3
 
@@ -75,17 +74,13 @@ prev_x = 0
 prev_y = 0
 cursor_initialized = False
 
-# Cursor position history
 cursor_history = deque(maxlen=5)
 
-# Gesture smoothing
 gesture_history = deque(maxlen=5)
 
-# Click cooldown
 last_click_time = 0
 click_cooldown = 0.6
 
-# Scroll settings
 previous_scroll_y = None
 scroll_accumulator = 0
 scroll_threshold = 8
@@ -135,11 +130,31 @@ def extract_features(hand_landmarks):
 
 cap = cv2.VideoCapture(0)
 
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+cap.set(cv2.CAP_PROP_FPS, 30)
+
 if not cap.isOpened():
 
     print("Webcam not detected!")
 
     raise SystemExit
+
+
+# Display window settings
+WINDOW_NAME = "SmartHand - Virtual Mouse + Facial Recognition"
+
+cv2.namedWindow(
+    WINDOW_NAME,
+    cv2.WINDOW_NORMAL
+)
+
+# Set window dimensions
+cv2.resizeWindow(
+    WINDOW_NAME,
+    1280,
+    720
+)
 
 
 frame_count = 0
@@ -191,7 +206,15 @@ try:
 
                 break
 
+            # Mirror webcam
             frame = cv2.flip(frame, 1)
+
+            # Resize frame for consistent display
+            frame = cv2.resize(
+                frame,
+                (1280, 720),
+                interpolation=cv2.INTER_LINEAR
+            )
 
             h, w, _ = frame.shape
 
@@ -202,7 +225,6 @@ try:
 
             face_frame_counter += 1
 
-            # Process face on alternate frames
             if face_frame_counter % 2 == 0:
 
                 face_detector.setInputSize((w, h))
@@ -211,7 +233,6 @@ try:
 
                 if faces is not None:
 
-                    # Select largest face
                     face = max(
                         faces,
                         key=lambda f: f[2] * f[3]
@@ -219,7 +240,6 @@ try:
 
                     x, y, fw, fh = face[:4].astype(int)
 
-                    # Predict facial expression
                     prediction = expression_model.infer(
                         frame,
                         face[:-1]
@@ -235,7 +255,6 @@ try:
                         predicted_expression
                     )
 
-                    # Smooth predictions
                     face_expression = Counter(
                         face_expression_history
                     ).most_common(1)[0][0]
@@ -304,7 +323,6 @@ try:
                 for lm in hand:
 
                     cx = int(lm.x * w)
-
                     cy = int(lm.y * h)
 
                     cv2.circle(
@@ -422,7 +440,6 @@ try:
                         if not cursor_initialized:
 
                             prev_x = target_x
-
                             prev_y = target_y
 
                             cursor_initialized = True
@@ -511,7 +528,7 @@ try:
                             cv2.putText(
                                 frame,
                                 "LEFT CLICK",
-                                (30, 200),
+                                (30, 240),
                                 cv2.FONT_HERSHEY_SIMPLEX,
                                 0.8,
                                 (0, 255, 0),
@@ -536,7 +553,7 @@ try:
                             cv2.putText(
                                 frame,
                                 "RIGHT CLICK",
-                                (30, 200),
+                                (30, 240),
                                 cv2.FONT_HERSHEY_SIMPLEX,
                                 0.8,
                                 (255, 0, 255),
@@ -555,60 +572,57 @@ try:
                 else (0, 0, 255)
             )
 
-            # Gesture
             cv2.putText(
                 frame,
                 f"Gesture: {gesture}",
-                (30, 40),
+                (30, 50),
                 cv2.FONT_HERSHEY_SIMPLEX,
-                0.8,
+                0.9,
                 (255, 255, 0),
                 2
             )
 
-            # Confidence
             cv2.putText(
                 frame,
                 f"Confidence: {confidence * 100:.1f}%",
-                (30, 80),
+                (30, 95),
                 cv2.FONT_HERSHEY_SIMPLEX,
-                0.7,
+                0.8,
                 (255, 255, 255),
                 2
             )
 
-            # Mouse status
             cv2.putText(
                 frame,
                 f"Mouse: {status}",
-                (30, 120),
+                (30, 140),
                 cv2.FONT_HERSHEY_SIMPLEX,
-                0.8,
+                0.9,
                 status_color,
                 2
             )
 
-            # Facial expression
             cv2.putText(
                 frame,
                 f"Expression: {face_expression}",
-                (30, 160),
+                (30, 185),
                 cv2.FONT_HERSHEY_SIMPLEX,
-                0.7,
+                0.8,
                 (255, 0, 255),
                 2
             )
 
 
             # ==========================================
-            # 19. SHOW APPLICATION WINDOW
+            # 19. DISPLAY FULL FRAME
             # ==========================================
 
             cv2.imshow(
-                "SmartHand - Virtual Mouse + Facial Recognition",
+                WINDOW_NAME,
                 frame
             )
 
+            # Press Q to exit
             if cv2.waitKey(1) & 0xFF == ord("q"):
 
                 break
